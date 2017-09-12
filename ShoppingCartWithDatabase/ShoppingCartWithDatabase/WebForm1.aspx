@@ -10,11 +10,11 @@
     <form id="form1" runat="server">
         <div>
         </div>
-        <asp:GridView ID="GridView1" runat="server" OnSelectedIndexChanged="AddToCart">
+        <asp:GridView ID="GridView1" runat="server"  OnRowCommand="ExtraxtData" >
             <Columns>
-                <asp:TemplateField HeaderText="Add To Cart">
+            <asp:TemplateField HeaderText="Add To Cart">
                     <ItemTemplate>
-                        <asp:Button ID="Button2" runat="server" Text="Add To Cart" />
+                        <asp:Button ID="Button2" runat="server" Text="Add To Cart" CommandName="AddToCart" CommandArgument="<%#Container.DataItemIndex %>" />
                     </ItemTemplate>
                 </asp:TemplateField>
             </Columns>

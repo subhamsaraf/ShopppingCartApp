@@ -13,13 +13,19 @@ namespace ShoppingCartWithDatabase
 {
     public partial class WebForm1 : System.Web.UI.Page
     {
+        string Productid;
         protected void Page_Load(object sender, EventArgs e)
         {
-            string connectionString = WebConfigurationManager.ConnectionStrings["ShoppingProductsDB"].ConnectionString;
-            string command = "Select * from Product";
-            GridView1.DataSource = getDataItem(connectionString, command).Tables[0];
-            GridView1.DataBind();
-        }
+            if (!IsPostBack)
+            {
+                //Session.Clear();
+
+                string connectionString = WebConfigurationManager.ConnectionStrings["ShoppingProductsDB"].ConnectionString;
+                string command = "Select * from Product";
+                GridView1.DataSource = getDataItem(connectionString, command).Tables[0];
+                GridView1.DataBind();
+            }
+        }  
         private DataSet getDataItem(string connectionstring, string command)
         {
             SqlConnection con = new SqlConnection(connectionstring);
@@ -29,11 +35,13 @@ namespace ShoppingCartWithDatabase
             adapter.Fill(dataset);
             return dataset;
         }
-        protected void AddToCart(object sender, EventArgs e)
+        protected void ExtraxtData(object sender, GridViewCommandEventArgs e)
         {
 
+            GridViewRow Row = ((GridViewRow)((Control)sender).Parent.Parent);
+            Productid = GridView1.DataKeys[Row.RowIndex].Value.ToString();
+            string cellvalue = Row.Cells[1].Text;
         }
-
         protected void Button1_Click(object sender, EventArgs e)
         {
             Response.Redirect("Cart.aspx");
