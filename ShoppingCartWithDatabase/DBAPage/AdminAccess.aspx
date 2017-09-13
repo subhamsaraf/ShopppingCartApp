@@ -8,7 +8,7 @@
 </head>
 <body>
     <form id="form1" runat="server">
-        <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" BackColor="#DEBA84" BorderColor="#DEBA84" BorderStyle="None" BorderWidth="1px" CellPadding="3" CellSpacing="2" DataKeyNames="p_id" DataSourceID="SqlDataSource1" Height="356px" Width="1141px">
+        <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" BackColor="#DEBA84" BorderColor="#DEBA84" BorderStyle="None" BorderWidth="1px" CellPadding="3" CellSpacing="2" DataKeyNames="p_id" DataSourceID="SqlDataSource1" Font-Size="Larger" Height="356px" OnSelectedIndexChanged="GridView1_SelectedIndexChanged" Width="1141px">
             <Columns>
                 <asp:CommandField ShowDeleteButton="True" ShowEditButton="True" />
                 <asp:BoundField DataField="p_id" HeaderText="p_id" ReadOnly="True" SortExpression="p_id" />
@@ -41,7 +41,7 @@
             </UpdateParameters>
         </asp:SqlDataSource>
         <div>
-            <asp:Button ID="Button1" runat="server" BackColor="#F7DFB5" Height="117px" OnClick="Button1_Click" Text="Add To DataBase" Width="286px" />
+            <asp:Button ID="Button1" runat="server" BackColor="#F7DFB5" Font-Size="Larger" Height="117px" OnClick="Button1_Click" Text="Add To DataBase" Width="286px" />
         </div>
     </form>
     <p>

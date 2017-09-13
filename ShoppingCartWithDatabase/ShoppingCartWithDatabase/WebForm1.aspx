@@ -9,7 +9,7 @@
 <body>
     <form id="form1" runat="server">
         <div>
-            <asp:GridView ID="ProductGrid" runat="server" OnRowDataBound="OnRowDataBound" CellPadding="3" BackColor="#DEBA84" BorderColor="#DEBA84" BorderStyle="None" BorderWidth="1px" CellSpacing="2" Height="384px" Width="1054px" >
+            <asp:GridView ID="ProductGrid" runat="server" OnRowDataBound="OnRowDataBound" CellPadding="3" BackColor="#DEBA84" BorderColor="#DEBA84" BorderStyle="None" BorderWidth="1px" CellSpacing="2" Font-Size="Larger" Height="384px" Width="1054px" >
                 <FooterStyle BackColor="#F7DFB5" ForeColor="#8C4510" />
                 <HeaderStyle BackColor="#A55129" Font-Bold="True" ForeColor="White" />
                 <PagerStyle ForeColor="#8C4510" HorizontalAlign="Center" />
@@ -24,7 +24,7 @@
             <br />
             <br />
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <asp:Button ID="Checkout" runat="server" Text="Checkout" BackColor="#F7DFB5" OnClick="Checkout_Click" Height="82px" Width="258px" />
+            <asp:Button ID="Checkout" runat="server" Text="Checkout" BackColor="#F7DFB5" OnClick="Checkout_Click" Font-Size="Larger" Height="82px" Width="258px" />
         </div>
     </form>
 </body>
