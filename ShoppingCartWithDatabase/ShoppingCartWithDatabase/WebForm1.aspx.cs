@@ -1,48 +1,75 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
-using System.Web.UI.WebControls;
 using System.Web.Configuration;
 using System.Web.UI.WebControls;
 using System.Data.SqlClient;
-using System.Data;
 
-namespace ShoppingCartWithDatabase
+namespace OnlineStore
 {
-    public partial class WebForm1 : System.Web.UI.Page
+    public partial class Index : System.Web.UI.Page
     {
-        string Productid;
+        static string connectionString;
+        static bool isFirstLoad = true;
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!IsPostBack)
+            if (isFirstLoad == true)
             {
-                //Session.Clear();
-
-                string connectionString = WebConfigurationManager.ConnectionStrings["ShoppingProductsDB"].ConnectionString;
-                string command = "Select * from Product";
-                GridView1.DataSource = getDataItem(connectionString, command).Tables[0];
-                GridView1.DataBind();
+                isFirstLoad = false;
+                Session["cart"] = new Dictionary<string, int>();
             }
-        }  
-        private DataSet getDataItem(string connectionstring, string command)
-        {
-            SqlConnection con = new SqlConnection(connectionstring);
-            SqlCommand comand = new SqlCommand(command, con);
-            SqlDataAdapter adapter = new SqlDataAdapter(comand);
-            DataSet dataset = new DataSet();
-            adapter.Fill(dataset);
-            return dataset;
-        }
-        protected void ExtraxtData(object sender, GridViewCommandEventArgs e)
-        {
+            connectionString = WebConfigurationManager.ConnectionStrings["productDb"].ConnectionString;
+            var inventory = GetData().Tables[0];
+            Session["inventory"] = inventory;
+            ProductGrid.DataSource = inventory;
+            ProductGrid.DataBind();
 
-            GridViewRow Row = ((GridViewRow)((Control)sender).Parent.Parent);
-            Productid = GridView1.DataKeys[Row.RowIndex].Value.ToString();
-            string cellvalue = Row.Cells[1].Text;
         }
-        protected void Button1_Click(object sender, EventArgs e)
+
+        private DataSet GetData()
+        {
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                string command = "select * from product";
+                SqlCommand cmd = new SqlCommand(command, conn);
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                DataSet ds = new DataSet();
+                da.Fill(ds);
+                return ds;
+            }
+        }
+
+        protected void OnRowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                LinkButton button = new LinkButton()
+                {
+                    ID = e.Row.Cells[0].Text,
+                    Text = "Add To Cart"
+                };
+                button.Click += LinkButton_Click;
+                e.Row.Cells.Add(new TableCell());
+                e.Row.Cells[3].Controls.Add(button);
+            }
+        }
+        protected void LinkButton_Click(object sender, EventArgs e)
+        {
+            var button = (LinkButton)sender;
+            var itemKey = button.ID;
+            int count = 0;
+            var cart = (Dictionary<string, int>)Session["cart"];
+            if (cart.TryGetValue(itemKey, out count))
+                cart[itemKey] += 1;
+            else
+                cart[itemKey] = 1;
+            Session["cart"] = cart;
+        }
+
+        protected void Checkout_Click(object sender, EventArgs e)
         {
             Response.Redirect("Cart.aspx");
         }

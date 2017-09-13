@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="WebForm1.aspx.cs" Inherits="ShoppingCartWithDatabase.WebForm1" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Index.aspx.cs" Inherits="OnlineStore.Index" %>
 
 <!DOCTYPE html>
 
@@ -9,17 +9,21 @@
 <body>
     <form id="form1" runat="server">
         <div>
+            <asp:GridView ID="ProductGrid" runat="server" OnRowDataBound="OnRowDataBound" CellPadding="4" ForeColor="#333333" GridLines="None" >
+                <AlternatingRowStyle BackColor="White" />
+                <EditRowStyle BackColor="#2461BF" />
+                <FooterStyle BackColor="#507CD1" Font-Bold="True" ForeColor="White" />
+                <HeaderStyle BackColor="#507CD1" Font-Bold="True" ForeColor="White" />
+                <PagerStyle BackColor="#2461BF" ForeColor="White" HorizontalAlign="Center" />
+                <RowStyle BackColor="#EFF3FB" />
+                <SelectedRowStyle BackColor="#D1DDF1" Font-Bold="True" ForeColor="#333333" />
+                <SortedAscendingCellStyle BackColor="#F5F7FB" />
+                <SortedAscendingHeaderStyle BackColor="#6D95E1" />
+                <SortedDescendingCellStyle BackColor="#E9EBEF" />
+                <SortedDescendingHeaderStyle BackColor="#4870BE" />
+            </asp:GridView>
+            <asp:Button ID="Checkout" runat="server" Text="Checkout" OnClick="Checkout_Click" />
         </div>
-        <asp:GridView ID="GridView1" runat="server"  OnRowCommand="ExtraxtData" >
-            <Columns>
-            <asp:TemplateField HeaderText="Add To Cart">
-                    <ItemTemplate>
-                        <asp:Button ID="Button2" runat="server" Text="Add To Cart" CommandName="AddToCart" CommandArgument="<%#Container.DataItemIndex %>" />
-                    </ItemTemplate>
-                </asp:TemplateField>
-            </Columns>
-        </asp:GridView>
-        <asp:Button ID="Button1" runat="server" OnClick="Button1_Click" Text="View Cart" />
     </form>
 </body>
 </html>
