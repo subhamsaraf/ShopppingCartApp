@@ -90,7 +90,7 @@ namespace OnlineStore
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
                 conn.Open();
-                string command = $"insert into order values('{orderId}','{DateTime.UtcNow}','{TotalAmout.Text}')";
+                string command = $"insert into orders values('{orderId}','{DateTime.UtcNow}','{TotalAmout.Text}')";
                 SqlCommand cmd = new SqlCommand(command, conn);
                 cmd.ExecuteNonQuery();
                 return orderId;
@@ -103,7 +103,7 @@ namespace OnlineStore
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
                 conn.Open();
-                string command = "select count(*) as 'Count' from Order;";
+                string command = "select count(*) as 'Count' from Orders;";
                 SqlCommand cmd = new SqlCommand(command, conn);
                 SqlDataReader reader = cmd.ExecuteReader();
                 reader.Read();
