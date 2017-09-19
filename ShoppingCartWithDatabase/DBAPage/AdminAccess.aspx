@@ -8,9 +8,9 @@
 </head>
 <body>
     <form id="form1" runat="server">
-        <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" BackColor="#DEBA84" BorderColor="#DEBA84" BorderStyle="None" BorderWidth="1px" CellPadding="3" CellSpacing="2" DataKeyNames="p_id" DataSourceID="SqlDataSource1" Font-Size="Larger" Height="356px" OnSelectedIndexChanged="GridView1_SelectedIndexChanged" Width="1141px">
+        <asp:GridView ID="Grid_List" runat="server" AutoGenerateColumns="False" BackColor="#DEBA84" BorderColor="#DEBA84" BorderStyle="None" BorderWidth="1px" CellPadding="3" CellSpacing="2" DataKeyNames="p_id" DataSourceID="SqlDataSource2" Font-Size="Larger" Height="356px" OnSelectedIndexChanged="GridView1_SelectedIndexChanged" Width="1141px" ShowFooter="True">
             <Columns>
-                <asp:CommandField ShowDeleteButton="True" ShowEditButton="True" />
+                <asp:CommandField ButtonType="Button" ShowDeleteButton="True" ShowEditButton="True" />
                 <asp:BoundField DataField="p_id" HeaderText="p_id" ReadOnly="True" SortExpression="p_id" />
                 <asp:BoundField DataField="Name" HeaderText="Name" SortExpression="Name" />
                 <asp:BoundField DataField="Price" HeaderText="Price" SortExpression="Price" />
@@ -25,6 +25,21 @@
             <SortedDescendingCellStyle BackColor="#F1E5CE" />
             <SortedDescendingHeaderStyle BackColor="#93451F" />
         </asp:GridView>
+        <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="<%$ ConnectionStrings:productDBConnectionString %>" DeleteCommand="DELETE FROM [Product] WHERE [p_id] = @p_id" InsertCommand="INSERT INTO [Product] ([p_id], [Name], [Price]) VALUES (@p_id, @Name, @Price)" SelectCommand="SELECT * FROM [Product]" UpdateCommand="UPDATE [Product] SET [Name] = @Name, [Price] = @Price WHERE [p_id] = @p_id">
+            <DeleteParameters>
+                <asp:Parameter Name="p_id" Type="String" />
+            </DeleteParameters>
+            <InsertParameters>
+                <asp:Parameter Name="p_id" Type="String" />
+                <asp:Parameter Name="Name" Type="String" />
+                <asp:Parameter Name="Price" Type="Double" />
+            </InsertParameters>
+            <UpdateParameters>
+                <asp:Parameter Name="Name" Type="String" />
+                <asp:Parameter Name="Price" Type="Double" />
+                <asp:Parameter Name="p_id" Type="String" />
+            </UpdateParameters>
+        </asp:SqlDataSource>
         <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:OnlineStoreConnectionString %>" DeleteCommand="DELETE FROM [Product] WHERE [p_id] = @p_id" InsertCommand="INSERT INTO [Product] ([p_id], [Name], [Price]) VALUES (@p_id, @Name, @Price)" SelectCommand="SELECT * FROM [Product]" UpdateCommand="UPDATE [Product] SET [Name] = @Name, [Price] = @Price WHERE [p_id] = @p_id">
             <DeleteParameters>
                 <asp:Parameter Name="p_id" Type="Int32" />
@@ -41,7 +56,6 @@
             </UpdateParameters>
         </asp:SqlDataSource>
         <div>
-            <asp:Button ID="Button1" runat="server" BackColor="#F7DFB5" Font-Size="Larger" Height="117px" OnClick="Button1_Click" Text="Add To DataBase" Width="286px" />
         </div>
     </form>
     <p>

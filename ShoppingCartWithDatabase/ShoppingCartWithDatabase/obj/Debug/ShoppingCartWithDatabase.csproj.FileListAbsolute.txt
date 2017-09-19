@@ -32,3 +32,4 @@ D:\subham\ShopppingCartApp\ShoppingCartWithDatabase\ShoppingCartWithDatabase\bin
 D:\subham\ShopppingCartApp\ShoppingCartWithDatabase\ShoppingCartWithDatabase\obj\Debug\ShoppingCartWithDatabase.csprojResolveAssemblyReference.cache
 D:\subham\ShopppingCartApp\ShoppingCartWithDatabase\ShoppingCartWithDatabase\obj\Debug\ShoppingCartWithDatabase.dll
 D:\subham\ShopppingCartApp\ShoppingCartWithDatabase\ShoppingCartWithDatabase\obj\Debug\ShoppingCartWithDatabase.pdb
+D:\subham\ShopppingCartApp\ShoppingCartWithDatabase\ShoppingCartWithDatabase\obj\Debug\ShoppingCartWithDatabase.csproj.CoreCompileInputs.cache

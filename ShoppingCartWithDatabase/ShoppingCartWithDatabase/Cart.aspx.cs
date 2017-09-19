@@ -22,30 +22,30 @@ namespace OnlineStore
                 var cart = (Dictionary<string, int>)Session["cart"];
                 if (cart.Count == 0)
                 {
-                    PlaceOrder.Visible = false;
+                    Btn_PlaceOrder.Visible = false;
                     Label2.Visible = false;
-                    TotalAmout.Visible = false;
-                    MessageLabel.Text = "Cart is empty";
+                    Lbl_TotalAmout.Visible = false;
+                    Lbl_MessageLabel.Text = "Cart is empty";
                 }
                 else
                 {
                     double totalAmount = 0;
-                    PlaceOrder.Visible = true;
+                    Btn_PlaceOrder.Visible = true;
                     Label2.Visible = true;
-                    TotalAmout.Visible = true;
-                    MessageLabel.Text = "Items in the cart are:";
+                    Lbl_TotalAmout.Visible = true;
+                    Lbl_MessageLabel.Text = "Items in the cart are:";
                     var cartDataTable = GetCartData(cart, invertory, out totalAmount);
-                    TotalAmout.Text = totalAmount.ToString();
-                    CartGridView.DataSource = cartDataTable;
-                    CartGridView.DataBind();
+                    Lbl_TotalAmout.Text = totalAmount.ToString();
+                    Grid_CartGridView.DataSource = cartDataTable;
+                    Grid_CartGridView.DataBind();
                 }
             }
             else
             {
-                PlaceOrder.Visible = false;
+                Btn_PlaceOrder.Visible = false;
                 Label2.Visible = false;
-                TotalAmout.Visible = false;
-                MessageLabel.Text = "Cart is empty.";
+                Lbl_TotalAmout.Visible = false;
+                Lbl_MessageLabel.Text = "Cart is empty.";
             }
         }
 
@@ -90,7 +90,7 @@ namespace OnlineStore
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
                 conn.Open();
-                string command = $"insert into orders values('{orderId}','{DateTime.UtcNow}','{TotalAmout.Text}')";
+                string command = $"insert into orders values('{orderId}','{DateTime.UtcNow}','{Lbl_TotalAmout.Text}')";
                 SqlCommand cmd = new SqlCommand(command, conn);
                 cmd.ExecuteNonQuery();
                 return orderId;

@@ -76,6 +76,7 @@
   <ItemGroup>
     <Content Include="AdminAccess.aspx" />
     <Content Include="Global.asax" />
+    <Content Include="Input.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -88,6 +89,13 @@
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Input.aspx.cs">
+      <DependentUpon>Input.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Input.aspx.designer.cs">
+      <DependentUpon>Input.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

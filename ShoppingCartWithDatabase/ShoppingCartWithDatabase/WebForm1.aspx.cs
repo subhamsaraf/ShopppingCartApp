@@ -33,7 +33,7 @@ namespace OnlineStore
         {
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
-                string command = "select * from product";
+                string command = "select * from Product";
                 SqlCommand cmd = new SqlCommand(command, conn);
                 SqlDataAdapter da = new SqlDataAdapter(cmd);
                 DataSet ds = new DataSet();
