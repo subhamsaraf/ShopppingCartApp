@@ -75,41 +75,66 @@ namespace OnlineStore
 
         private void SaveOrderItem(string orderId, string productId, int quantity, decimal price)
         {
-            using (SqlConnection conn = new SqlConnection(connectionString))
+            try
             {
-                conn.Open();
-                string command = $"insert into orderDetails values('{orderId}','{productId}','{quantity}','{price}')";
-                SqlCommand cmd = new SqlCommand(command, conn);
-                cmd.ExecuteNonQuery();
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    conn.Open();
+                    string command = $"insert into orderDetails values('{orderId}','{productId}','{quantity}','{price}')";
+                    SqlCommand cmd = new SqlCommand(command, conn);
+                    cmd.ExecuteNonQuery();
+                }
+            }
+            catch (Exception e)
+            {
+                Response.Write("Cart had some problem connecting to the database");
             }
         }
 
         private string SaveOrder(int orderCount)
         {
             var orderId = $"Order{++orderCount}";
-            using (SqlConnection conn = new SqlConnection(connectionString))
+            try
             {
-                conn.Open();
-                string command = $"insert into orders values('{orderId}','{DateTime.UtcNow}','{Lbl_TotalAmout.Text}')";
-                SqlCommand cmd = new SqlCommand(command, conn);
-                cmd.ExecuteNonQuery();
-                return orderId;
+
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    conn.Open();
+                    string command = $"insert into orders values('{orderId}','{DateTime.UtcNow}','{Lbl_TotalAmout.Text}')";
+                    SqlCommand cmd = new SqlCommand(command, conn);
+                    cmd.ExecuteNonQuery();
+                    return orderId;
+                }
+            }
+            catch (Exception e)
+            {
+                Response.Write("Problem saving the Order list");
+                return null;
             }
         }
 
         private int GetOrdersCount()
         {
             var orderCount = 0;
-            using (SqlConnection conn = new SqlConnection(connectionString))
+            try
             {
-                conn.Open();
-                string command = "select count(*) as 'Count' from Orders;";
-                SqlCommand cmd = new SqlCommand(command, conn);
-                SqlDataReader reader = cmd.ExecuteReader();
-                reader.Read();
-                var data = reader["count"].ToString();
-                if (int.TryParse(data, out orderCount))
-                    return orderCount;
+
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    conn.Open();
+                    string command = "select count(*) as 'Count' from Orders;";
+                    SqlCommand cmd = new SqlCommand(command, conn);
+                    SqlDataReader reader = cmd.ExecuteReader();
+                    reader.Read();
+                    var data = reader["count"].ToString();
+                    if (int.TryParse(data, out orderCount))
+                        return orderCount;
+                    return 0;
+                }
+            }
+            catch(Exception e)
+            {
+                Response.Write("Problem faced while getting the ordercount from the database");
                 return 0;
             }
         }

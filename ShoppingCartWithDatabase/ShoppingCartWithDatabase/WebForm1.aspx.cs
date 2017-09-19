@@ -31,16 +31,25 @@ namespace OnlineStore
 
         private DataSet GetData()
         {
-            using (SqlConnection conn = new SqlConnection(connectionString))
+            try
             {
-                string command = "select * from Product";
-                SqlCommand cmd = new SqlCommand(command, conn);
-                SqlDataAdapter da = new SqlDataAdapter(cmd);
-                DataSet ds = new DataSet();
-                da.Fill(ds);
-                return ds;
+
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+
+                    string command = "select * from Product";
+                    SqlCommand cmd = new SqlCommand(command, conn);
+                    SqlDataAdapter da = new SqlDataAdapter(cmd);
+                    DataSet ds = new DataSet();
+                    da.Fill(ds);
+                    return ds;
+                }
             }
-        }
+            catch(Exception e)
+            {
+                Response.Write("Sql DataBase CONNECTIVITY Error (Data base connection error)");
+            }
+            }
 
         protected void OnRowDataBound(object sender, GridViewRowEventArgs e)
         {
