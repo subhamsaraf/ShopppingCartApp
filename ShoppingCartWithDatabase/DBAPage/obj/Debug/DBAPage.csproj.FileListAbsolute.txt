@@ -31,3 +31,4 @@ D:\subham\ShopppingCartApp\ShoppingCartWithDatabase\DBAPage\bin\Microsoft.CodeDo
 D:\subham\ShopppingCartApp\ShoppingCartWithDatabase\DBAPage\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
 D:\subham\ShopppingCartApp\ShoppingCartWithDatabase\DBAPage\obj\Debug\DBAPage.dll
 D:\subham\ShopppingCartApp\ShoppingCartWithDatabase\DBAPage\obj\Debug\DBAPage.pdb
+D:\subham\ShopppingCartApp\ShoppingCartWithDatabase\DBAPage\obj\Debug\DBAPage.csproj.CoreCompileInputs.cache

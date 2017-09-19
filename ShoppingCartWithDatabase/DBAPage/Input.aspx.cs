@@ -14,10 +14,10 @@ namespace DBAPage
 
         }
 
-        protected void Button1_Click(object sender, EventArgs e)
-        {
-            string name = TextBox1.Text;
-            string command = "UPDATE "
-        }
+        //protected void Button1_Click(object sender, EventArgs e)
+        //{
+        //    string name = TextBox1.Text;
+        //    string command = "UPDATE ";
+        //}
     }
 }

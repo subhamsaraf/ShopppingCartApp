@@ -21,7 +21,7 @@ namespace OnlineStore
                 isFirstLoad = false;
                 Session["cart"] = new Dictionary<string, int>();
             }
-            connectionString = WebConfigurationManager.ConnectionStrings["productDb"].ConnectionString;
+            connectionString = WebConfigurationManager.ConnectionStrings["productDBConnectionString"].ConnectionString;
             var inventory = GetData().Tables[0];
             Session["inventory"] = inventory;
             ProductGrid.DataSource = inventory;

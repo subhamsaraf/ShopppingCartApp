@@ -14,14 +14,13 @@ namespace DBAPage
 
         }
 
-        protected void Button1_Click(object sender, EventArgs e)
+        protected void lbInsert_Click(object sender, EventArgs e)
         {
-
+            SqlDataSource2.InsertParameters["Name"].DefaultValue = ((TextBox)Grid_List.FooterRow.FindControl("txtName")).Text;
+            SqlDataSource2.InsertParameters["Price"].DefaultValue = ((TextBox)Grid_List.FooterRow.FindControl("txtPrice")).Text;
+            SqlDataSource2.Insert();
         }
 
-        protected void GridView1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
+        
     }
 }
